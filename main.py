@@ -22,11 +22,18 @@ def parse_args():
         "--config", type=str,
         default="./configs/prompt2prompt.yaml"
     )
-    parser.add_argument("--api_token", type=str, default="", help="hugging face token.")
-    parser.add_argument("--outdir", type=str, default="./outputs/prompt2prompt/", )
+    parser.add_argument(
+        "--outdir", type=str, default="./outputs/prompt2prompt/"
+    )
+    parser.add_argument(
+        "--api_token", type=str, default="",
+        help="hugging face token."
+    )
+    parser.add_argument(
+        "--repeat", type=int, default=1,
+        help="how many times to repeat each experiment (with different seed)."
+    )
     parser.add_argument("--seed", type=int, default=43)
-    parser.add_argument("--repeat", type=int, help="how many times to repeat the experiment with different seed.",
-                        default=1, )
     opt = parser.parse_args()
     return opt
 
