@@ -37,7 +37,7 @@ def load_model_hugging(token: str = None, version: int = 0):
     return model, tokenizer
 
 
-def get_controller(cfg, tokenizer, prompts, weight=None):
+def get_controller(cfg, tokenizer, prompts, max_num_words=77, weight=None):
     """
     Get Prompt2Prompt controller
     """
@@ -46,7 +46,8 @@ def get_controller(cfg, tokenizer, prompts, weight=None):
     local_blend = None
     controller = None
     if cfg.localize.apply:
-        local_blend = ptp_utils.LocalBlend(tokenizer, prompts, words=tuple(cfg.localize.words))
+        local_blend = ptp_utils.LocalBlend(tokenizer, prompts, words=tuple(cfg.localize.words),
+                                           max_num_words=max_num_words)
 
     if cfg.replace.apply:
         controller = ptp_utils.AttentionReplace(

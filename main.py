@@ -86,6 +86,14 @@ def main():
     uncond_embeddings = None
     x_t = None
 
+    # decide maximum number of words
+    max_num_words = 77
+    for experiment in experiments.values():
+        max_num_words = max(max_num_words, len(experiment.prompt_init.split(' ')))
+        max_target_words = max([len(p.split(' ')) for p in experiment.prompt_new])
+        max_num_words = max(max_num_words, max_target_words)
+    print(max_num_words)
+
     # iterate over experiments
     for exp_idx, exp_key in enumerate(experiments.keys()):
         exp_cfg = experiments[exp_key]
@@ -104,8 +112,8 @@ def main():
             # iterate over list of weights
             weights = [1] if not exp_cfg.reweight.apply else exp_cfg.reweight.weights
             for weight in weights:
-                # get reweighing controller
-                controller = utils.get_controller(exp_cfg, tokenizer, prompts, (float(weight),))
+                # get controller
+                controller = utils.get_controller(exp_cfg, tokenizer, prompts, max_num_words, (float(weight),))
 
                 # actual editing
                 images, _ = ptp_utils.text2image_ldm_stable(model, prompts, controller, exp_cfg.steps, exp_cfg.scale,

@@ -318,8 +318,7 @@ def update_alpha_time_word(alpha, bounds: Union[float, Tuple[float, float]], pro
     return alpha
 
 
-def get_time_words_attention_alpha(prompts, num_steps,
-                                   cross_replace_steps: Union[float, Dict[str, Tuple[float, float]]],
+def get_time_words_attention_alpha(prompts, num_steps, cross_replace_steps:Union[float, Dict[str, Tuple[float, float]]],
                                    tokenizer, max_num_words=77):
     if type(cross_replace_steps) is not dict:
         cross_replace_steps = {"default_": cross_replace_steps}
@@ -344,7 +343,7 @@ class LocalBlend:
     def __call__(self, x_t, attention_store):
         k = 1
         maps = attention_store["down_cross"][2:4] + attention_store["up_cross"][:3]
-        maps = [item.reshape(self.alpha_layers.shape[0], -1, 1, 16, 16, MAX_NUM_WORDS) for item in maps]
+        maps = [item.reshape(self.alpha_layers.shape[0], -1, 1, 16, 16, self.max_num_words) for item in maps]
         maps = torch.cat(maps, dim=1)
         maps = (maps * self.alpha_layers).sum(-1).mean(1)
         mask = nnf.max_pool2d(maps, (k * 2 + 1, k * 2 + 1), (1, 1), padding=(k, k))
@@ -355,8 +354,9 @@ class LocalBlend:
         x_t = x_t[:1] + mask * (x_t - x_t[:1])
         return x_t
 
-    def __init__(self, tokenizer, prompts: List[str], words: [List[List[str]]], threshold=.3):
-        alpha_layers = torch.zeros(len(prompts), 1, 1, 1, 1, MAX_NUM_WORDS)
+    def __init__(self, tokenizer, prompts: List[str], words: [List[List[str]]], threshold=.3, max_num_words=77):
+        self.max_num_words = max_num_words
+        alpha_layers = torch.zeros(len(prompts), 1, 1, 1, 1, max_num_words)
         for i, (prompt, words_) in enumerate(zip(prompts, words)):
             if type(words_) is str:
                 words_ = [words_]
