@@ -14,6 +14,9 @@ CONTEXT = None
 
 
 def parse_args():
+    """
+    Command line argument
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--config", type=str,
@@ -37,6 +40,9 @@ def get_prompts(exp_cfg):
 
 
 def get_source_img(exp_cfg, model, generator, prompt_src):
+    """
+    Generate/Invert source image
+    """
     images_save = []
     # generating initial image
     if exp_cfg.img_path and exp_cfg.img_path != "":
@@ -86,7 +92,7 @@ def main():
             if exp_idx == 0 or not exp_cfg.resume_from_last:
                 x_t, imgs_src, uncond_embeddings, images_save = get_source_img(exp_cfg, model, g_cpu, prompts[0])
             else:
-                images_save = [ptp_utils.text_under_image(imgs_src[0], text="source image")]
+                images_save = []
 
             # iterate over list of weights
             weights = [1] if not exp_cfg.reweight.apply else exp_cfg.reweight.weights
