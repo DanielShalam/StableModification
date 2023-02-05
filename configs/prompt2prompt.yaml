@@ -1,0 +1,36 @@
+"experiments":
+  "0":
+    prompt_init: "a professional imaging of a modern style black house with blue windows and small garden"
+    prompt_new: [
+        "a professional imaging of a modern style black house with green windows and small garden",
+    ]
+    to_blend: ["windows", "windows"]
+    to_reweight: "green"
+    img_path: ""
+
+  "1":
+    prompt_init: "a professional imaging of a house with a small garden"
+    prompt_new: [
+        "a professional imaging of a house with a small garden",
+    ]
+    to_blend: ["garden", "garden"]
+    to_reweight: "small"
+    img_path: ""
+
+  "2":
+    prompt_init: "a photo of wooden beach house near the ocean"
+    prompt_new: [
+        "a photo of wooden beach house near the ocean covered with snow"
+    ]
+    to_blend: ""
+    to_reweight: "snow"
+    img_path: ""
+
+  "3":
+    prompt_init: "graph of a stock who lost money in the previous month"
+    prompt_new: [
+        "graph of a stock who earn money in the previous month"
+    ]
+    to_blend: ""
+    to_reweight: "earn"
+    img_path: ""

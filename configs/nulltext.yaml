@@ -1,0 +1,67 @@
+"experiments":
+  "0":
+    prompt_init: "Professional imaging of house front. The house is mainly white, it has 2 floors with 2 balconies on the second floor.
+    its roof is brown and made of stone. The house is surrounded by palm trees and a bright sky."
+    prompt_new: [
+        "Professional imaging of house front. The house is mainly white, it has 2 floors with 2 balconies on the second floor.
+            its roof is brown and made of stone. The house is surrounded by cactus trees and a bright sky.",
+    ]
+    img_path: "./inputs/house_palm.jpg"
+    steps: 50
+    scale: 7.5
+    self_replace_steps: 0.4
+    cross_replace_steps: 0.8
+
+    # modes
+    localize:
+      apply: True
+      words: ["trees", "trees"]
+
+    reweight:
+      apply: True
+      text: ["cactus"]
+      weights: [-1, 1, 2, 4, 8]
+
+    refine:
+      apply: False
+      self_replace_steps: 0.4
+      cross_replace_steps: 0.8
+
+    replace:
+      apply: True
+      self_replace_steps: 0.4
+      cross_replace_steps: 0.8
+
+  "1":
+    prompt_init: "Professional imaging of house front. The house is mainly white, it has 2 floors with 2 balconies on the second floor.
+    its roof is brown and made of stone. The house is surrounded by palm trees and a bright sky."
+    prompt_new: [
+        "Professional imaging of house front. The house is mainly white, it has 2 floors with 2 balconies on the second floor.
+            its roof is brown and made of stone. The house is surrounded by cactus trees and a bright sky.",
+    ]
+    img_path: "./inputs/house_palm.jpg"
+    steps: 50
+    scale: 7.5
+    self_replace_steps: 0.4
+    cross_replace_steps: 0.8
+    resume_from_last: True
+
+    # modes
+    localize:
+      apply: False
+      words: ["trees", "trees"]
+
+    reweight:
+      apply: True
+      text: ["cactus"]
+      weights: [ -1, 1, 2, 4, 8 ]
+
+    refine:
+      apply: False
+      self_replace_steps: 0.4
+      cross_replace_steps: 0.8
+
+    replace:
+      apply: True
+      self_replace_steps: 0.4
+      cross_replace_steps: 0.8
