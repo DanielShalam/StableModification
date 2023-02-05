@@ -24,13 +24,9 @@
 
     refine:
       apply: False
-      self_replace_steps: 0.4
-      cross_replace_steps: 0.8
 
     replace:
       apply: True
-      self_replace_steps: 0.4
-      cross_replace_steps: 0.8
 
   "1":
     prompt_init: "Professional imaging of house front. The house is mainly white, it has 2 floors with 2 balconies on the second floor.
@@ -58,10 +54,6 @@
 
     refine:
       apply: False
-      self_replace_steps: 0.4
-      cross_replace_steps: 0.8
 
     replace:
       apply: True
-      self_replace_steps: 0.4
-      cross_replace_steps: 0.8

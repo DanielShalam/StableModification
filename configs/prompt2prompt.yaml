@@ -20,12 +20,8 @@
       weights: [-1, 1, 2, 4, 8]
     refine:
       apply: True
-      self_replace_steps: 0.4
-      cross_replace_steps: 0.8
     replace:
       apply: False
-      self_replace_steps: 0.4
-      cross_replace_steps: 0.8
   "1":
     prompt_init: "a professional imaging of a house with a small garden"
     prompt_new: [
@@ -47,12 +43,8 @@
       weights: [-1, 1, 2, 4, 8]
     refine:
       apply: True
-      self_replace_steps: 0.4
-      cross_replace_steps: 0.8
     replace:
       apply: False
-      self_replace_steps: 0.4
-      cross_replace_steps: 0.8
   "2":
     prompt_init: "a photo of wooden beach house near the ocean"
     prompt_new: [
@@ -73,9 +65,5 @@
       weights: [-1, 1, 2, 4, 8]
     refine:
       apply: True
-      self_replace_steps: 0.4
-      cross_replace_steps: 0.8
     replace:
       apply: False
-      self_replace_steps: 0.4
-      cross_replace_steps: 0.8
