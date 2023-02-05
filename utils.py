@@ -7,7 +7,6 @@ from diffusers import AutoencoderKL, UNet2DConditionModel, PNDMScheduler, LMSDis
 import ptp_utils
 from ldm.util import instantiate_from_config
 
-API_TOKEN = "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"
 model_ids = ["CompVis/stable-diffusion-v1-4", "stabilityai/stable-diffusion-2"]
 device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
 
@@ -25,14 +24,14 @@ def get_v2_modules():
     return vae, tokenizer, text_encoder, unet
 
 
-def load_model_hugging(version: int = 0):
+def load_model_hugging(token: str = None, version: int = 0):
     """
     Load pretrained diffusion model from hugging-face
     """
     assert version < 2
     scheduler = DDIMScheduler(beta_start=0.00085, beta_end=0.012, beta_schedule="scaled_linear", clip_sample=False,
                               set_alpha_to_one=False)
-    model = StableDiffusionPipeline.from_pretrained(model_ids[version], use_auth_token=API_TOKEN, scheduler=scheduler,
+    model = StableDiffusionPipeline.from_pretrained(model_ids[version], use_auth_token=token, scheduler=scheduler,
                                                     torch_dtype=torch.float32).to(device)
     tokenizer = model.tokenizer
     return model, tokenizer

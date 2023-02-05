@@ -22,7 +22,7 @@ def parse_args():
         "--config", type=str,
         default="./configs/prompt2prompt.yaml"
     )
-    parser.add_argument("-w", "--weights", type=float, nargs='+', default=[-1, 2, 4, 8])
+    parser.add_argument("--api_token", type=str, default="", help="hugging face token.")
     parser.add_argument("--outdir", type=str, default="./outputs/prompt2prompt/", )
     parser.add_argument("--seed", type=int, default=43)
     parser.add_argument("--repeat", type=int, help="how many times to repeat the experiment with different seed.",
@@ -69,7 +69,7 @@ def main():
     seed_everything(args.seed)
     os.makedirs(args.outdir, exist_ok=True)
     base_count = len(os.listdir(args.outdir)) + 1
-    model, tokenizer = utils.load_model_hugging(version=0)
+    model, tokenizer = utils.load_model_hugging(token=args.api_token, version=0)
     print(args)
 
     # load experiments from config file
