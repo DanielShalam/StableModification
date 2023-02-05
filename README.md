@@ -50,5 +50,5 @@ Note that only one from refine/replace can be activated.
  ### commands:
  Run:
  ```
- python prompt2prompt.py --config <path to config file> --outdir <outputs directory>
+ python main.py --config <path to config file> --outdir <outputs directory>
  ```
