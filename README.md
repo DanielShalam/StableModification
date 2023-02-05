@@ -12,7 +12,7 @@
   
   prompt_new: The new prompt with your modifications.
   
-  img_path: If it given, it will triger null inversion of the image. If you want to use it without, leave it blank ("").
+  img_path: If given, it will triger null inversion of the image. If you want to use without, leave it blank ("").
   
   steps: How many denoising steps.
   
